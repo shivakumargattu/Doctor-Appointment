@@ -15,7 +15,7 @@ const {doctors}=useContext(AppContext)
         <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
             {
                 doctors.slice(0,10).map((item,index)=>(
-                 <div onClick={()=>navigte(`/appointment/${item._idc}`)} key={index} className='border border-orange-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-300'>
+                 <div onClick={()=>navigte(`/appointment/${item._id}`)} key={index} className='border border-orange-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-300'>
                   
                    <img className='bg-orange-50' src={item.image} alt=''/>
                    <div className='p-4'>

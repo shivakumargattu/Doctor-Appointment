@@ -9,6 +9,7 @@ import Myappointmnts from './pages/Myappointmnts'
 import Myprofile from './pages/Myprofile'
 import Appointments from './pages/Appointments'
 import Navbar from './componets/Navbar'
+import Footer from './componets/Footer'
 
 const App = () => {
   return (
@@ -28,7 +29,7 @@ const App = () => {
   
 
 </Routes>
-     
+     <Footer/>
     </div>
 
   )

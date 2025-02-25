@@ -120,7 +120,40 @@ useEffect(()=>{
 
       </div>
 
-      {/** Booking slots  **/}
+      {/* Booking slots */}
+<div className='sm: m1-72 sm: pl-4 mt-4 font-medium text-gray-700'>
+<p>Booking slots</p>
+<div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
+{
+docSlots.length && docSlots.map((item, index)=>(
+<div onClick={()=>setSlotIndex(index)} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex===index?"bg-primary text-white":"border border-gray-200"}`}  key={index}>
+<p>{item[0] && daysOfWeek [item[0].datetime.getDay ()]}</p>
+<p>{item[0] && item[0].datetime.getDate()}</p>
+</div>
+))
+}
+</div>
+</div>
+<div className='flex items-center gap-3 w-full overflow-scroll mt-4'>
+  {docSlots.length && docSlots[slotIndex].map((item,index)=>{
+
+    let timePart = item.time.split(' ')[0]; 
+    timePart = timePart.substring(0, 5);     
+
+
+    return(
+      
+      
+      <p onClick={()=>setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time===slotTime? "bg-primary": "border text-gray-400 border-gray-300"} `} key={index}>
+        {timePart.toLowerCase()}
+      </p>
+      
+    )
+  }
+
+  )}
+</div>
+<button className='bg-primary text-white font-light text-sm py-4 px-8 my-6 rounded-full'>Book an Appointment</button>
     </div>
   )
 }

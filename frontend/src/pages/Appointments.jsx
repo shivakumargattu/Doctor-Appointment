@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams} from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import { assets } from '../assets/assets'
+import RelatedDoctors from '../componets/RelatedDoctors'
 
 const Appointments = () => {
 
@@ -90,7 +91,7 @@ useEffect(()=>{
 },[docSlots])
 
   return docInfo && (
-    <div>
+    <div className=''>
     {/**----- Doctor Info ----- */}
       <div className='flex flex-col sm:flex-row gap-4'>
         <div>
@@ -122,7 +123,7 @@ useEffect(()=>{
 
       {/* Booking slots */}
 <div className='sm: m1-72 sm: pl-4 mt-4 font-medium text-gray-700'>
-<p>Booking slots</p>
+<p className='text-xl'>Booking slots</p>
 <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
 {
 docSlots.length && docSlots.map((item, index)=>(
@@ -133,7 +134,7 @@ docSlots.length && docSlots.map((item, index)=>(
 ))
 }
 </div>
-</div>
+
 <div className='flex items-center gap-3 w-full overflow-scroll mt-4'>
   {docSlots.length && docSlots[slotIndex].map((item,index)=>{
 
@@ -153,7 +154,15 @@ docSlots.length && docSlots.map((item, index)=>(
 
   )}
 </div>
-<button className='bg-primary text-white font-light text-sm py-4 px-8 my-6 rounded-full'>Book an Appointment</button>
+</div>
+<button className='bg-primary text-white font-light text-sm py-4 px-8 ml-4 mt-4 rounded-full'>Book an Appointment</button>
+<div>
+
+</div>
+
+<div>
+  <RelatedDoctors docId={docId} speciality={docInfo.speciality}/>
+</div>
     </div>
   )
 }

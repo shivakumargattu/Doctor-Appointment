@@ -2,7 +2,9 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='md:mx-1' >
+    <div className=" mt-8">
+    <div className=' md:mx-1' >
+    
     <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-10 text-sm '>
       {/*---Left--*/}
        <div>
@@ -36,9 +38,10 @@ const Footer = () => {
 
 <div className='text-center'>
 <hr className='bg-gray-600 h-0.5 '/>
-<p className='text-gray-600 text-md  p-2'>Copyright © 2025 Gattu Shiva - All Right Reserved.</p>
+<p className='text-gray-600 text-sm  p-2'>Copyright © 2025 Gattu Shiva - All Right Reserved.</p>
 </div>
 
+    </div>
     </div>
   )
 }

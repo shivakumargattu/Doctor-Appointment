@@ -23,7 +23,23 @@ const About = () => {
      </div>
      </div>
      <div>
-      <p className='pt-4 text-gray-900 font-medium'>Why Choose Us</p>
+      <p className='pt-4 text-gray-900 text-xl font-medium'>Why Choose Us</p>
+
+      <div className='flex py-4 px-8 my-5 items-center border gap-4 border-gray-300  '>
+  
+       <div className='p-3 flex  flex-col items-start '>
+        <h1 className='text-gray-900 font-medium'>Efficiency:</h1>
+        <p className='text-gray-500 text-sm'>Streamlined appointment scheduling that fits into your busy lifestyle.</p>
+       </div>
+       <div className='p-3 flex flex-col  items-start'>
+         <h1 className='text-gray-900 font-medium'>Convenience:</h1>
+         <p className='text-gray-500 text-sm'>Access to a network of trusted healthcare professionals in your area.</p>
+       </div>
+      <div className='p-3 flex  flex-col items-start'>
+        <h1 className='text-gray-900 font-medium'>Personalization:</h1>
+        <p className='text-gray-500 text-sm'>Tailored recommendations and reminders to help you stay on top of your health.</p>
+      </div>
+      </div>
      </div>
     
     </div>

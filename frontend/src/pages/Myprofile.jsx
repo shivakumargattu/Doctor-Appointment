@@ -59,7 +59,7 @@ const Myprofile = () => {
           <input className="bg-gray-50 text-xl font-medium max-w-60 mt-4" onChange={(e) => setUserdata(prev => ({ ...prev, address: {...prev.address, linel: e.target.value}}))} value={userData.address.line2} type="text"/>
         </p>
         :
-        <p className='text-primary'>
+        <p className='text-gray-400'>
          {userData.address.line1} 
          <br/>
          {userData.address.line2}

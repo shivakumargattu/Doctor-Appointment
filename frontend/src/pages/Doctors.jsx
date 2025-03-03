@@ -26,8 +26,8 @@ const Doctors = () => {
   return (
     <div>
      <p className='text-gray-600 '>Browse through the doctors specialist.</p>
-     <div className='flex flx-col sm:flex-row items-start gap-10 mt-5'>
-     <div className='flex-col gap-4 text-sm text-gray-600  '>
+     <div className='md:flx-col lg:flex flex-row items-start gap-10 mt-2'>
+     <div className='flex-col  gap-4 text-sm text-gray-600 pt-3 '>
            <p onClick={()=>speciality=="General physician"?navigte("/doctors"):navigte("/doctors/General physician")}  className='w-[94vw sm:w-auto pl-3  px-24 py-1.5  cursor-pointer m-1 border border-gray-300 rouneded transition-all hover:bg-primary '>General physician</p>
            <p onClick={()=>speciality=="Gynecologist"?navigte("/doctors"):navigte("/doctors/Gynecologist")} className='w-[94vw sm:w-auto pl-3 px-24  py-1.5  cursor-pointer m-1  border border-gray-300 rouneded transition-all hover:bg-primary' >Gynecologist</p>
            <p onClick={()=>speciality=="Dermatologist"?navigte("/doctors"):navigte("/doctors/Dermatologist")} className='w-[94vw sm:w-auto pl-3 px-24  py-1.5 cursor-pointer  m-1  border border-gray-300 rouneded transition-all hover:bg-primary' >Dermatologist</p>
@@ -38,7 +38,7 @@ const Doctors = () => {
 
     
 
-<div className='w-full grid grid-cols-auto gap-4 gap-y-6'>
+<div className='w-full grid grid-cols-auto gap-4 gap-y-6 pt-3'>
   {
     filterDoc.map((item,index)=>(
                  <div onClick={()=>navigte(`/appointment/${item._id}`)} key={index} className='border border-orange-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-300'>

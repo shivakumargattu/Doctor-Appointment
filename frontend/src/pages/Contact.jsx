@@ -5,10 +5,10 @@ const Contact = () => {
   return (
     <div>
          <p className=' text-center text-2xl mb-10 '>Contact US</p>
-      <div className='flex'>
+      <div className='flex md:flex-cols'>
 
            <div>
-            <img  className="h-2/3 rounded-full" src={assets.contact_image} alt="about image" />
+            <img  className="h-2/3 rounded-full md:w-100" src={assets.contact_image} alt="about image" />
             
            </div>
            <div className='text-gray-500 text-sm w-1/2 '>

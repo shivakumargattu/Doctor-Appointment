@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className='p-3'>
      <h3 className='text-gray-900 text-center font-medium  text-3xl '>About Us</h3>
-     <div className=' flex flex-row gap-4 pt-10  '>
+     <div className='lg:flex flex-row pt-10 md:flex-cols justify-center items-center gap-2  '>
      <div>
       <img  className="w-full " src={assets.about_image} alt="about image" />
       
@@ -22,10 +22,10 @@ const About = () => {
       
      </div>
      </div>
-     <div>
+     <div > 
       <p className='pt-4 text-gray-900 text-xl font-medium'>Why Choose Us</p>
 
-      <div className='flex py-4 px-8 my-5 items-center border gap-4 border-gray-300  '>
+      <div className='lg:flex flex-row py-4 px-8 my-5 items-center border gap-4 border-gray-300 md: flex-cols' >
   
        <div className='p-4 flex  flex-col items-start cursor-pointer rounded  hover:bg-primary'>
         <h1 className='text-gray-900 font-medium'>Efficiency:</h1>

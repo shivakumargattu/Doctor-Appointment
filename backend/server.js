@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import connectDB from "./config/mongobd.js";
 
 import "dotenv/config"
 
@@ -7,6 +8,7 @@ import "dotenv/config"
 
 const app= express();
 const port=process.env.PORT || 4000
+connectDB()
 
 // middelwares 
 

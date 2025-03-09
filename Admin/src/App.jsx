@@ -1,9 +1,10 @@
 import React from 'react'
+import Login from './pages/Login'
 
 const App = () => {
   return (
     <div>
-      <h1 className='text-orange-500 underline text-3xl'> Testing </h1>
+      <Login/>
     </div>
   )
 }

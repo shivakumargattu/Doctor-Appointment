@@ -1,9 +1,17 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const AdminContext = createContext();
 
 const AdminContextProvider = (props) => {
-  const value = {};
+   
+  const [token,setToken]=useState("")
+
+  const backendUrl=import.meta.env.VITE_BACKEN_URL
+
+  const value = {
+    token,setToken,backendUrl
+
+  };
 
   return (
     <AdminContext.Provider value={value}>

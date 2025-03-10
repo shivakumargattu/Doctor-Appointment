@@ -20,7 +20,7 @@ const Login = () => {
                 <input type="password"  required/>
 
               </div>
-              <button>Login</button>
+              <button className="bg-[#FF7F50]">Login</button>
           </div>
          </form>
   )

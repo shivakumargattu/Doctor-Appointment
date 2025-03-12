@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { AdminContext } from './context/AdminContext';
 import Navbar from './componets/Navbar';
+import Sidebar from './componets/Sidebar';
 
 const App = () => {
 
@@ -14,6 +15,9 @@ const App = () => {
     <div className='bg-[#F8F9FD]'>
       <ToastContainer/>
       <Navbar/>
+      <div>
+        <Sidebar/>
+      </div>
     </div>
   ):(
     <>

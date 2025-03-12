@@ -15,7 +15,7 @@ const Navbar = () => {
     }
 
   return (
-    <div className=' flex justify-between items-center sm:px-10 border-b bg-white' >
+    <div className=' flex justify-between items-center sm:px-10 border-b border-gray-200  bg-white' >
         <div className='flex item-center gap-2 '>
             <p className='text-orange-500  text-2xl font-medium mt-2'>Baby Step</p>
             <p className='border py-2 px-6 m-2 rounded-full border-gray-500 text-gray-700 text-xs '>{token?"Admin":"Doctor"}</p>

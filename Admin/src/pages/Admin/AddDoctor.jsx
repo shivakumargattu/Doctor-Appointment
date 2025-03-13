@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { assets } from '../../assets/assets';
+import {AdminContext} from "../../context/AdminContext"
+import {toast} from "react-toastify"
 
 const AddDoctor = () => {
        
@@ -14,8 +16,26 @@ const AddDoctor = () => {
      const [speciality,setSpeciality]=useState("General Physician")
      const [address,setAddress]=useState("")
 
+
+     const {backenUrl,token}=useContext(AdminContext)
+
      const onSubmitHandler=async(e)=>{
       e.preventDefault()
+
+      try {
+
+        if(!docImg){
+          return toast.error("Image Not selected")
+
+        }
+
+        
+        
+      } catch (error) {
+
+        console.log(error)
+        
+      }
       
      }
 

@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { assets } from '../../assets/assets';
 
 const AddDoctor = () => {
+       
+     const [docImg,setDocImg]=useState(false)
+     const [name,setname]=useState("")
+     const [email,setEmail]=useState("")
+     const [password,setPassword]=useState("")
+     const [experience,setExperienc]=useState("1 yr")
+     const [fees, setFees]=useState("")
+     const [degree,setDegree]=useState("")
+     const [about,setAbout]=useState("")
+     const [speciality,setSpeciality]=useState("General Physician")
+     const [address,setAddress]=useState("")
+
+     
   return (
     <div className="w-full p-2 sm:p-3">
       <form className="border-r border-amber-50 m-2 sm:m-3 w-full  "> {/* Removed max-w-md */}
@@ -13,12 +26,12 @@ const AddDoctor = () => {
               className="cursor-pointer rounded-full overflow-hidden w-20 h-20 flex items-center justify-center bg-gray-100"
             >
               <img
-                src={assets.upload_area}
+                src={docImg? URL.createObjectURL(docImg): assets.upload_area}
                 alt="Upload Doctor Picture"
                 className="max-w-full max-h-full"
               />
             </label>
-            <input type="file" id="doc-img" hidden />
+            <input onChange={(e)=>setDocImg(e.target.files[0])} type="file" id="doc-img" hidden />
             <p className="mt-1 text-xs text-gray-600 text-center">
               Upload picture
             </p>

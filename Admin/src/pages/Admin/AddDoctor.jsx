@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { assets } from '../../assets/assets';
 import {AdminContext} from "../../context/AdminContext"
 import {toast} from "react-toastify"
+import axios from "axios"
 
 const AddDoctor = () => {
        
@@ -17,7 +18,7 @@ const AddDoctor = () => {
      const [address,setAddress]=useState("")
 
 
-     const {backenUrl,token}=useContext(AdminContext)
+     const {backendUrl,token}=useContext(AdminContext)
 
      const onSubmitHandler=async(e)=>{
       e.preventDefault()
@@ -29,8 +30,31 @@ const AddDoctor = () => {
 
         }
 
-        
-        
+        const formData = new FormData()
+        formData.append('image', docImg)
+        formData.append('name', name)
+        formData.append('email', email)
+        formData.append('password', password)
+        formData.append('experience', experience)
+        formData.append('fees', Number (fees))
+        formData.append('about', about)
+        formData.append('speciality', speciality)
+        formData.append('degree', degree)
+        formData.append('address', address)
+
+      //// console.log formdata
+      formData.forEach((value,key)=>{
+        console.log(`${key}: ${value}`)
+      })
+
+      const {data} =await axios.post(backendUrl+'/api/admin/add-doctor', formData,{headers:{token}})  
+      
+       if(data.success){
+          toast.success(data.message)
+       }else{
+        toast.error(data.message  )
+       }
+
       } catch (error) {
 
         console.log(error)

@@ -14,10 +14,15 @@ const AddDoctor = () => {
      const [speciality,setSpeciality]=useState("General Physician")
      const [address,setAddress]=useState("")
 
+     const onSubmitHandler=async(e)=>{
+      e.preventDefault()
+      
+     }
+
      
   return (
     <div className="w-full p-2 sm:p-3">
-      <form className="border-r border-amber-50 m-2 sm:m-3 w-full  "> {/* Removed max-w-md */}
+      <form onSubmit={onSubmitHandler} className="border-r border-amber-50 m-2 sm:m-3 w-full  "> {/* Removed max-w-md */}
         <p className="mb-2 text-lg font-semibold text-gray-800">Add Doctor</p>
         <div className="bg-white p-3 border rounded-md shadow-sm">
           <div className="mb-3 flex flex-col items-center">
@@ -45,9 +50,13 @@ const AddDoctor = () => {
                 Name
               </label>
               <input
+              onChange={(e)=>setname(e.target.value) }
+              value={name}
                 type="text"
                 id="doctor-name"
                 placeholder="Name"
+                
+
                 required
                 className="mt-0.5 p-2 w-full border rounded-md text-xs focus:ring focus:ring-orange-200 focus:border-orange-300"
               />
@@ -60,6 +69,8 @@ const AddDoctor = () => {
                 Email
               </label>
               <input
+               onChange={(e)=>setEmail(e.target.value) }
+               value={email}
                 type="email"
                 id="doctor-email"
                 placeholder="Email"
@@ -75,6 +86,8 @@ const AddDoctor = () => {
                 Password
               </label>
               <input
+               onChange={(e)=>setPassword(e.target.value) }
+               value={password}
                 type="password"
                 id="doctor-password"
                 placeholder="Password"
@@ -90,6 +103,8 @@ const AddDoctor = () => {
                 Exp.
               </label>
               <select
+               onChange={(e)=>setExperienc(e.target.value) }
+               value={experience}
                 id="doctor-experience"
                 className="mt-0.5 p-2 w-full border rounded-md text-xs focus:ring focus:ring-orange-200 focus:border-orange-300"
               >
@@ -108,6 +123,8 @@ const AddDoctor = () => {
                 Fees
               </label>
               <input
+               onChange={(e)=>setFees(e.target.value) }
+               value={fees}
                 type="number"
                 id="doctor-fees"
                 placeholder="Fees"
@@ -123,6 +140,8 @@ const AddDoctor = () => {
                 Spec.
               </label>
               <select
+               onChange={(e)=>setSpeciality(e.target.value) }
+               value={speciality}
                 id="doctor-speciality"
                 className="mt-0.5 p-2 w-full border rounded-md text-xs focus:ring focus:ring-orange-200 focus:border-orange-300"
               >
@@ -142,6 +161,8 @@ const AddDoctor = () => {
                 Edu.
               </label>
               <input
+               onChange={(e)=>setDegree(e.target.value) }
+               value={degree}
                 type="text"
                 id="doctor-education"
                 placeholder="Education"
@@ -157,6 +178,8 @@ const AddDoctor = () => {
                 Addr.
               </label>
               <input
+                onChange={(e)=>setAddress(e.target.value) }
+                value={address}
                 type="text"
                 id="doctor-address"
                 placeholder="Address"
@@ -173,6 +196,8 @@ const AddDoctor = () => {
               About
             </label>
             <textarea
+             onChange={(e)=>setAbout(e.target.value) }
+             value={about}
               id="doctor-about"
               placeholder="About doctor"
               rows={2}

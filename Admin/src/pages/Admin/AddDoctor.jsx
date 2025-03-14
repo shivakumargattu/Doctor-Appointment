@@ -10,7 +10,7 @@ const AddDoctor = () => {
      const [name,setname]=useState("")
      const [email,setEmail]=useState("")
      const [password,setPassword]=useState("")
-     const [experience,setExperienc]=useState("1 yr")
+     const [experience,setExperience]=useState("1 yr")
      const [fees, setFees]=useState("")
      const [degree,setDegree]=useState("")
      const [about,setAbout]=useState("")
@@ -51,6 +51,20 @@ const AddDoctor = () => {
       
        if(data.success){
           toast.success(data.message)
+          setDocImg(false)
+          setname("")
+          setPassword("")
+          setFees("")
+          setAbout("")
+          setEmail("")
+          setSpeciality("")
+          setDegree("")
+          setAddress("")
+          setExperience("")
+
+
+
+
        }else{
         toast.error(data.message  )
        }
@@ -147,7 +161,7 @@ const AddDoctor = () => {
                 Exp.
               </label>
               <select
-               onChange={(e)=>setExperienc(e.target.value) }
+               onChange={(e)=>setExperience(e.target.value) }
                value={experience}
                 id="doctor-experience"
                 className="mt-0.5 p-2 w-full border rounded-md text-xs focus:ring focus:ring-orange-200 focus:border-orange-300"

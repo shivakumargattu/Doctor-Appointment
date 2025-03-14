@@ -7,7 +7,7 @@ import axios from "axios"
 const AddDoctor = () => {
        
      const [docImg,setDocImg]=useState(false)
-     const [name,setname]=useState("")
+     const [name,setName]=useState("")
      const [email,setEmail]=useState("")
      const [password,setPassword]=useState("")
      const [experience,setExperience]=useState("1 yr")
@@ -52,7 +52,7 @@ const AddDoctor = () => {
        if(data.success){
           toast.success(data.message)
           setDocImg(false)
-          setname("")
+          setName("")
           setPassword("")
           setFees("")
           setAbout("")
@@ -108,7 +108,7 @@ const AddDoctor = () => {
                 Name
               </label>
               <input
-              onChange={(e)=>setname(e.target.value) }
+              onChange={(e)=>setName(e.target.value) }
               value={name}
                 type="text"
                 id="doctor-name"

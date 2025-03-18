@@ -10,10 +10,14 @@ import Myprofile from './pages/Myprofile'
 import Appointments from './pages/Appointments'
 import Navbar from './componets/Navbar'
 import Footer from './componets/Footer'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   return (
+
     <div className='mx-2 sm:mx-[10%]'>
+  <ToastContainer/>
     <Navbar/>
 <Routes>
   <Route path='/' element={<Home/>}/>
@@ -30,6 +34,7 @@ const App = () => {
 
 </Routes>
      <Footer/>
+    
     </div>
 
   )

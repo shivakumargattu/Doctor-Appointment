@@ -9,7 +9,7 @@ const Speciality = () => {
       className="flex flex-col gap-6 py-8 text-gray-800 items-center"
     >
       <h1 className="text-3xl font-semibold">Find by Speciality</h1>
-      <p className="sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 text-center text-sm text-gray-600">
+      <p className="text-center text-sm text-gray-600">
         Simply browse through our extensive list of trusted doctors, schedule your
         appointment hassle-free.
       </p>

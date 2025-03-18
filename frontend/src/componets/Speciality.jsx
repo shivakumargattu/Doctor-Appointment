@@ -22,7 +22,7 @@ const Speciality = () => {
               key={index}
               to={`/doctors/${item.speciality}`}
             >
-              <img className="w-20 h-20 sm:w-24 sm:h-24 mb-2 rounded-full object-cover" src={item.image} alt={item.speciality} />
+              <img className="w-20 h-20  sm:w-24 sm:h-24 mb-2 rounded-full object-cover" src={item.image} alt={item.speciality} />
               <p className="text-sm mt-1">{item.speciality}</p>
             </Link>
           ))}

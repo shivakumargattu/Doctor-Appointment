@@ -71,7 +71,10 @@ const loginUser=async (req,res)=>{
     if(isMatch){
        const token=jwt.sign({id:user._id},process.env.JWT_SECRET)
        res.json({success:true,token})
-    }  
+    }else{
+      res.json({ success: false,message:"Invaild credetilas" });
+
+    }
 
   } catch (error) {
     
@@ -81,4 +84,4 @@ const loginUser=async (req,res)=>{
   }
 }
 
-export { registerUser };
+export { registerUser,loginUser};

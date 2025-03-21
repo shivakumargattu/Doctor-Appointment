@@ -84,4 +84,26 @@ const loginUser=async (req,res)=>{
   }
 }
 
+/// API for get user profile
+
+const getProfile=async (req,res)=>{
+
+  try {
+
+     const {userId}=req.body
+
+    
+  } catch (error) {
+
+     
+    console.log(error);
+    res.json({ success: false, message: error.message });
+ 
+    
+  }
+}
+
+
+
+
 export { registerUser,loginUser};

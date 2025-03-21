@@ -74,7 +74,7 @@ const {token,setToken} =useContext(AppContext)
              <div className={`${showMenu? "fixed w-full":"h-0 w-0"} md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
               <div className='flex items-center justify-between py-4 px-5'>
                 <p className='font-medium text-primary text-2xl w-36'>Baby Step</p>
-                <img w-34  onClick={()=>setShowMenu(false)} className='h-8' src={assets.cross_icon} alt="" />
+                <img  onClick={()=>setShowMenu(false)} className='h-8 w-34' src={assets.cross_icon} alt="" />
               </div>
               <ul className='flex flex-col font-semibold items-center to="/"'>
                 <NavLink  onClick={()=>setShowMenu(false)} to="/"><p className=" px-4 py-2 rounded">Home</p></NavLink>

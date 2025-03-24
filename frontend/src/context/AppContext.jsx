@@ -27,17 +27,17 @@ const AppContextProvider = (props) => {
 
     const loadUserProfileData = async () => {
         try {
-            const { data } = await axios.get(backendUrl + '/api/user/get-profile', { headers: { token } });
-            console.log(token)
+            const { data } = await axios.get(backendUrl + '/api/user/get-profile', {
+            headers: {token }
+            });
             if (data.success) {
-                console.log(data)
-                setUserData(data.userData);
+            setUserData(data.userData);
             }
         } catch (error) {
             console.log(error);
             toast.error(error.message);
         }
-    };
+        };
 
     const value = {
         doctors,

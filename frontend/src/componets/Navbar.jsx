@@ -5,7 +5,7 @@ import { AppContext } from '../context/AppContext'
 
 const Navbar = () => {
 
-const {token,setToken} =useContext(AppContext)
+const {token,setToken,userData} =useContext(AppContext)
   const navigate=useNavigate()
 
   const [showMenu, setShowMenu]=useState(false)
@@ -23,7 +23,7 @@ const {token,setToken} =useContext(AppContext)
     }
   },[token])
 
-  return (
+  return  (
     <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'> 
         <h5 onClick={()=>navigate("/")} className='font-bold w-44 cursor-pointer text-primary text-xl bold'>Baby Step</h5>
         <ul className='hidden md:flex items-start gap-5 font-medium'>
@@ -51,9 +51,9 @@ const {token,setToken} =useContext(AppContext)
 
         {
           
-          token?
+          token && userData?
           <div className='flex items-center gap-2 cursor-pointer group relative'>
-            <img  className="w-9 rounded-full " src={assets.profile_pic} alt='profile'/>
+            <img  className="w-10 rounded-full " src={userData.image} alt='profile'/>
             
             <img className='w-2.5' src={assets.dropdown_icon} alt='dropdownIcon'/>
             <div className='absolute top-0 right-0 pt-14 text-base font-medium z-20 text-gary-600 hidden group-hover:block'>            

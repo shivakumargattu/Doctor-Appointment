@@ -153,9 +153,10 @@ const bookAppointment=async(req,res)=>{
     const {userId,slotDate,slotTime,docId}=req.body
 
     const docData=await doctorModel.findById(docId).select("-password")
-    if(!docData){
+    if(!docData.available){
       return res.json({success:false,message:"Doctor Not available"})
     }
+
    let slot_Booked=docData.slot_Booked
 // checking for slot availble time
 
@@ -163,7 +164,7 @@ if(slot_Booked[slotDate]){
   if(slot_Booked[slotDate].includes(slotTime)){
     return res.json({success:false,message:"slot is Not available"})
   }else{
-    slot_Booked[slotDate]=[]
+    
     slot_Booked[slotDate].push(slotTime)
   }
 }else{
@@ -176,7 +177,15 @@ delete docData.slot_Booked
 
 
 const appointmentData={
-  userId,docId,userData,docData,amount:docData.fees,slotDate,slotTime,date:Date.now()
+  userId,
+  docId,
+  userData,
+  docData,
+  amount:docData.fees,
+
+  slotDate,
+  slotTime,
+  date:Date.now()
 }
 
 const newAppointment=new appointmentModel(appointmentData)
@@ -197,5 +206,24 @@ res.json({success:true,message:"Appointment Booked"})
   }
 }
 
+/// API to get user Appoints fro Froented
 
-export { registerUser,loginUser,getProfile,updateProfile,bookAppointment  };
+const listAppoiintment=async(req,res)=>{
+  try {
+
+    const {userId}=req.body
+
+    const appointments=await appointmentModel.find({userId})
+    res.json({success:true, appointments})
+
+    
+  } catch (error) {
+    
+    console.error(error);
+    res.json({ success: false, message: error.message });
+
+  }
+}
+
+
+export { registerUser,loginUser,getProfile,updateProfile,bookAppointment,listAppoiintment  };

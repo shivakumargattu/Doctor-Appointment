@@ -9,7 +9,7 @@ const Myappointmnts = () => {
   const {backendUrl,token} =useContext(AppContext)
   const [appointments,setAppointments]=useState([])
 
-  const getUserAppointments=async()=>{
+   const getUserAppointments=async()=>{
     try {
 
       const {data}=await axios.get(backendUrl+"/api/user/appointments",{headers:{token}})
@@ -44,7 +44,7 @@ const Myappointmnts = () => {
             <p className='text-zinc-700'>Adress:</p>
             <p className='text-xs'>{item.docData.address}</p>
            
-            <p className='text-sm mt-1'><span className=' text-sm text-netural-700 font-medium'>date& Time</span> {item.slotDate} | {item.slotTime}</p>
+            <p className='text-sm mt-1'><span className=' text-sm text-netural-700 font-medium'>Date & Time:</span> {item.slotDate} || {item.slotTime.split(' GMT')[0]}</p>
     
           </div>
             <div></div>

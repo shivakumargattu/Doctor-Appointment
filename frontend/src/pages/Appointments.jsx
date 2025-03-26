@@ -205,36 +205,35 @@ const Appointments = () => {
         </div>
 
         {/* Time Slot Selection */}
-        <div className="mb-6">
-          <h3 className="text-lg font-medium mb-2">Available Time Slots</h3>
-          {loading ? (
-            <div className="text-center py-4">Loading slots...</div>
-          ) : availableSlots[selectedDateIndex]?.slots.length === 0 ? (
-            <div className="text-center py-4 text-gray-500">
-              No available slots for this day
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {availableSlots[selectedDateIndex]?.slots.map((slot, index) => (
-                <button
-        key={index}
-        onClick={() => slot.isAvailable && setSelectedTime(slot.time)}
-        className={`py-2 rounded-md transition-all ${
-          !slot.isAvailable
-            ? 'bg-yellow-100 text-yellow-800 cursor-not-allowed border border-yellow-200' // Yellow for booked slots
-            : selectedTime === slot.time
-              ? 'bg-primary text-white' // Selected slot
-              : 'bg-gray-100 hover:bg-gray-200' // Available slot
-        }`}
-        disabled={!slot.isAvailable}
-      >
-        {slot.time}
-        {!slot.isAvailable && ' (Booked)'}
-      </button>
-              ))}
-            </div>
-          )}
-        </div>
+        {/* Time Slot Selection */}
+<div className="mb-6">
+  <h3 className="text-lg font-medium mb-2">Available Time Slots</h3>
+  {loading ? (
+    <div className="text-center py-4">Loading slots...</div>
+  ) : availableSlots[selectedDateIndex]?.slots.filter(slot => slot.isAvailable).length === 0 ? (
+    <div className="text-center py-4 text-gray-500">
+      No available slots for this day
+    </div>
+  ) : (
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      {availableSlots[selectedDateIndex]?.slots
+        .filter(slot => slot.isAvailable) // Only show available slots
+        .map((slot, index) => (
+          <button
+            key={index}
+            onClick={() => setSelectedTime(slot.time)}
+            className={`py-2 rounded-md transition-all text-sm ${
+              selectedTime === slot.time
+                ? 'bg-primary text-white border-primary' // Selected slot
+                : 'bg-white text-gray-800 border border-gray-300 hover:border-primary hover:text-primary' // Available slot
+            }`}
+          >
+            {slot.time}
+          </button>
+        ))}
+    </div>
+  )}
+</div>
 
         {/* Book Button */}
         <button

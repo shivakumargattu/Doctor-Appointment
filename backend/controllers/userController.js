@@ -5,6 +5,7 @@ import userModel from "../models/userModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import doctorModel from "../models/doctorModel.js";
 import appointmentModel from "../models/appointment.js";
+import razorpay from  "razorpay"
 
 // api to register user
 
@@ -255,6 +256,8 @@ const cancelAppointment=async(req,res)=>{
 
   }
 }
+
+
 
 
 

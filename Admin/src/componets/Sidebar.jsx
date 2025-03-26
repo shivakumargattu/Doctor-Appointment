@@ -1,38 +1,48 @@
 import React, { useContext } from 'react'
 import { AdminContext } from '../context/AdminContext'
 import { NavLink } from 'react-router-dom'
-import {assets} from "../assets/assets"
+import { assets } from "../assets/assets"
 
 const Sidebar = () => {
+    const { token } = useContext(AdminContext)
 
-    const {token}=useContext(AdminContext)
-
-  return (
-    <div className='min-h-[100vh] bg-white border-r border-amber-50'>
-        {
-            token && <ul className='text-[#515151] mt-5'>
-                <NavLink to={"/adimn-dashboard"} className={({isActive})=>`flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive?"bg-[#fff6f2]  border-r-4 border-orange-500":""}`}>
-                    <img src={assets.home_icon} alt="" />
-                    <p>Dashboard</p>
-                </NavLink>
-
-                <NavLink to={"all-appointments"} className={({isActive})=>`flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive?"bg-[#fff6f2]  border-r-4 border-orange-500":""}`}>
-                    <img src={assets.appointment_icon} alt="" />
-                    <p>Appointments</p>
-                </NavLink>
-
-                <NavLink to={"/add-doctor"} className={({isActive})=>`flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive?"bg-[#fff6f2]  border-r-4 border-orange-500":""}`}>
-                    <img src={assets.add_icon} alt="" />
-                    <p>Add Doctos</p>
-                </NavLink>
-                <NavLink to={"/doctor-list"} className={({isActive})=>`flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive?"bg-[#fff6f2]  border-r-4 border-orange-500":""}`}>
-                    <img src={assets.people_icon} alt="" />
-                    <p>Doctors List</p>
-                </NavLink>
-            </ul>
-        }
-    </div>
-  )
+    return (
+        <div className='min-h-screen bg-white border-r border-gray-200 w-full md:w-64 transition-all duration-300'>
+            {
+                token && (
+                    <ul className='text-gray-600 mt-5'>
+                        {[
+                            { to: "/admin-dashboard", icon: assets.home_icon, text: "Dashboard" },
+                            { to: "/all-appointments", icon: assets.appointment_icon, text: "Appointments" },
+                            { to: "/add-doctor", icon: assets.add_icon, text: "Add Doctors" },
+                            { to: "/doctor-list", icon: assets.people_icon, text: "Doctors List" }
+                        ].map((item, index) => (
+                            <li key={index} className='hover:bg-[#FFF5F0] transition-colors duration-200'>
+                                <NavLink 
+                                    to={item.to} 
+                                    className={({isActive}) => `
+                                        flex items-center gap-3 py-3 px-4 md:px-6 
+                                        cursor-pointer transition-all duration-200
+                                        ${isActive ? 
+                                            'bg-[#FFF5F0] border-r-4 border-[#FF7F50] text-[#FF7F50] font-medium' : 
+                                            'hover:text-[#FF7F50]'
+                                        }`
+                                    }
+                                >
+                                    <img 
+                                        src={item.icon} 
+                                        alt="" 
+                                        className={`w-5 h-5 ${item.to === "/add-doctor" ? 'opacity-80' : ''}`} 
+                                    />
+                                    <span className='text-sm md:text-base'>{item.text}</span>
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
+                )
+            }
+        </div>
+    )
 }
 
 export default Sidebar

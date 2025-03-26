@@ -1,81 +1,126 @@
-import React, { useContext, useEffect, useState } from 'react'
-import {assets} from "../assets/assets"
-import {AppContext} from "../context/AppContext"
-import axios from 'axios'
-import { toast } from 'react-toastify'
+import React, { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const Myappointmnts = () => {
+const MyAppointments = () => {
+  const { backendUrl, token } = useContext(AppContext);
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const {backendUrl,token} =useContext(AppContext)
-  const [appointments,setAppointments]=useState([])
+  // Fetch user appointments
+  useEffect(() => {
+    if (token) {
+      fetchAppointments();
+    }
+  }, [token]);
 
-   const getUserAppointments=async()=>{
+  const fetchAppointments = async () => {
     try {
-
-      const {data}=await axios.get(backendUrl+"/api/user/appointments",{headers:{token}})
-        if(data.success){
-          setAppointments(data.appointments.reverse())
-          console.log(data.appointments)
-        }
-
-      
-    } catch (error) {
-      console.log(error)
-      toast.error(error.message)
-    }
-  }
-  useEffect(()=>{
-    if(token){
-      getUserAppointments()
-    }
-  },[token])
-
-  const cancelAppointment=async(appointmentId)=>{
-      try {
-        
-        const {data}=await axios.post(backendUrl+"/api/user/cancel-appointment",{appointmentId},{headers:{token}})
-        if(data.success){
-          toast.success(data.message)
-          getUserAppointments()
-        }else{
-          toast.error(error.message)
-        }
-
-      } catch (error) {
-        console.log(error)
-      toast.error(error.message)
+      setLoading(true);
+      const { data } = await axios.get(`${backendUrl}/api/user/appointments`, {
+        headers: { token }
+      });
+      if (data.success) {
+        setAppointments(data.appointments.reverse());
       }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to fetch appointments");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  }
+  const cancelAppointment = async (appointmentId) => {
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/user/cancel-appointment`,
+        { appointmentId },
+        { headers: { token } }
+      );
+      if (data.success) {
+        toast.success("Appointment cancelled");
+        fetchAppointments();
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to cancel appointment");
+    }
+  };
 
   return (
-    <div>
-      <p className='pb-3 mt-12 font-medium text-zinc-700 border-b'>My Appointments</p>
-      <div>{appointments.map((item,index)=>(
-        <div className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b' key={index}>
-          <div>
-            <img className='w-32 bg-orange-50' src={item.docData.image} alt="" />
-          </div>
-          <div className=' flex-1 text-sm text-zinc-600 '>  
-            <p className='text-neutral-800 font-semibold'>{item.docData.name}</p>
-            <p>{item.docData.speciality}</p>
-            <p className='text-zinc-700'>Adress:</p>
-            <p className='text-xs'>{item.docData.address}</p>
-           
-            <p className='text-sm mt-1'><span className=' text-sm text-netural-700 font-medium'>Date & Time:</span> {item.slotDate} || {item.slotTime.split(' GMT')[0]}</p>
-    
-          </div>
-            <div></div>
-            <div className='flex flex-col gap-2 justify-end'>
-            
-             {!item.cancelled && <button className='text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded-lg hover:bg-primary hover:text-white transition-all duration-300  '> Pay Online</button> } 
-             {!item.cancelled && <button onClick={()=>cancelAppointment(item._id)} className='text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded-lg hover:bg-red-600 hover:text-white transition-all duration-300 '>Cancel Appointment</button>}
-             {item.cancelled && <button className='sm:min-w-48 py-2 border border-red-500 rounded text-red-500'>Appointment Cancelled</button>}
-            </div>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-6">My Appointments</h1>
+      
+      {loading ? (
+        <div className="text-center py-8">Loading appointments...</div>
+      ) : appointments.length === 0 ? (
+        <div className="text-center py-8 text-gray-500">
+          You have no upcoming appointments
         </div>
-      ))}</div>
-    </div>
-  )
-}
+      ) : (
+        <div className="space-y-4">
+          {appointments.map((appointment) => (
+            <div 
+              key={appointment._id}
+              className={`border rounded-lg p-4 ${
+                appointment.cancelled ? 'bg-gray-100' : 'bg-white'
+              }`}
+            >
+              <div className="flex flex-col md:flex-row gap-4">
+                {/* Doctor Info */}
+                <div className="flex items-start gap-4">
+                  <img 
+                    src={appointment.docData.image} 
+                    alt={appointment.docData.name}
+                    className="w-20 h-20 rounded-full object-cover"
+                  />
+                  <div>
+                    <h3 className="font-bold">{appointment.docData.name}</h3>
+                    <p className="text-gray-600">{appointment.docData.speciality}</p>
+                    <p className="text-sm mt-1">
+                      <span className="font-medium">Date:</span> {appointment.slotDate.replace(/_/g, '/')}
+                    </p>
+                    <p className="text-sm">
+                      <span className="font-medium">Time:</span> {appointment.slotTime.split(' ')[0]}
+                    </p>
+                  </div>
+                </div>
 
-export default Myappointmnts
+                {/* Appointment Status */}
+                <div className="flex-1">
+                  <p className={`font-medium ${
+                    appointment.cancelled ? 'text-red-600' : 'text-green-600'
+                  }`}>
+                    {appointment.cancelled ? 'Cancelled' : 'Confirmed'}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    Booked on: {new Date(appointment.date).toLocaleString()}
+                  </p>
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-col gap-2">
+                  {!appointment.cancelled && (
+                    <>
+                      <button className="text-primary px-4 py-2 border border-primary  rounded hover:bg-primary hover:text-white ">
+                        Pay Online
+                      </button>
+                      <button 
+                        onClick={() => cancelAppointment(appointment._id)}
+                        className="px-4 py-2 border border-red-600  text-red-600 rounded hover:bg-red-700 hover:text-white"
+                      >
+                        Cancel Appointment
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MyAppointments;

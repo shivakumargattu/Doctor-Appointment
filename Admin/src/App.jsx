@@ -15,7 +15,7 @@ const App = () => {
   const { token } = useContext(AdminContext)
 
   return token ? (
-    <div className="min-h-screen bg-[#F8F9FD] flex flex-col">
+    <div className="min-h-screen bg-[hsl(230,31%,53%)] flex flex-col">
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -43,7 +43,7 @@ const App = () => {
       </div>
     </div>
   ) : (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFF5F0] to-[#FFE5D9]">
+    <div className="min-h-screen bg-gradient-to-br from-white ">
       <ToastContainer
         position="top-center"
         autoClose={3000}

@@ -117,6 +117,7 @@ const appointmentsAdmin = async (req, res) => {  // Add req, res parameters
         const appointments = await appointmentModel.find({})
             .populate('docId', 'name speciality')
             .sort({ date: -1, timeSlot: 1 });
+            
         
         res.json({ success: true, appointments });
         

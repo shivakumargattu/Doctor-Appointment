@@ -27,9 +27,11 @@ app.use("/api/user",userRouter)
 
 
 
+
+
 app.get("/",(req,res)=>{
 
-    res.send("Api Woring All fine")
+    res.send("Api Working All fine")
 
 })
 app.listen(port,()=>console.log("Serve Started", port))

@@ -2,15 +2,20 @@ import React, { useContext } from 'react'
 import { AdminContext } from '../context/AdminContext'
 import { useNavigate } from "react-router-dom"
 import { FiLogOut } from 'react-icons/fi'
+import { DoctorContext } from '../context/DoctorContext'
 
 const Navbar = () => {
   const { token, setToken } = useContext(AdminContext)
+  const {dToken,setDtoken}=useContext(DoctorContext)
   const navigate = useNavigate()
 
   const logout = () => {
     navigate("/")
     token && setToken("")
     token && localStorage.removeItem("token")
+    dToken && setDtoken("")
+    
+
   }
 
   return (
@@ -29,7 +34,7 @@ const Navbar = () => {
           </span>
         </div>
 
-        {token && (
+        {(token ||dToken) && (
           <button 
             onClick={logout}
             className="flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium 

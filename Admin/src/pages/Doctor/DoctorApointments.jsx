@@ -8,7 +8,7 @@ const DoctorAppointments = () => {
     setDtoken,
     appointments,
     setAppointments,
-    getAppointments
+    getAppointments,cancelAppointment,completeAppointment
   } = useContext(DoctorContext)
 
   useEffect(() => {
@@ -90,18 +90,24 @@ const DoctorAppointments = () => {
               </div>
               
               {/* Actions */}
-              <div className="col-span-3 md:col-span-2 flex justify-end items-center gap-2">
-                <button className="p-2 rounded-lg hover:bg-amber-50 text-amber-500 hover:text-amber-600 transition-colors">
+
+              {
+                item.cancelled?<p className='text-red-500'>Cancelled</p>:item.isCompleted?<p className='text-green-500'>Completed</p>
+                :
+                <div className="col-span-3 md:col-span-2 flex justify-end items-center gap-2">
+                <button onClick={()=>cancelAppointment(item._id)} className="p-2 rounded-lg hover:bg-amber-50 text-amber-500 hover:text-amber-600 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </button>
-                <button className="p-2 rounded-lg hover:bg-green-50 text-green-500 hover:text-green-600 transition-colors">
+                <button onClick={()=>completeAppointment(item._id)}  className="p-2 rounded-lg hover:bg-green-50 text-green-500 hover:text-green-600 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </button>
               </div>
+              }
+              
             </div>
           ))
         ) : (

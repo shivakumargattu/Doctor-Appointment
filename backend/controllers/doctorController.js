@@ -94,6 +94,18 @@ const loginDoctor = async (req, res) => {
   }
 };
 
+/// Get All Doctors list
+
+const doctorList=async (req,res)=>{ 
+   try {    const doctors=await doctorModel.find({}).select(['-password',"-email"])  
+     res.json({success:true,doctors})  }
+ catch (error) {        
+  console.log(error)      
+  res.json({success:false,message:error.message})  
+   }}
+
+
+
 // Get all appointments for doctor
 const appointmentsDoctor=async(req,res)=>{
   
@@ -115,7 +127,56 @@ const appointmentsDoctor=async(req,res)=>{
 
 }
 
+
+//API to mark as completed Appointments
+
+const appointmentComplete=async(req,res)=>{
+
+  try {
+
+    const {docId,appointmentId}=req.body
+    const appointmentData=await appointmentModel.findById(appointmentId)
+    if(appointmentData && appointmentData.docId===docId){
+      await appointmentModel.findByIdAndUpdate(appointmentId,{isCompleted:true})
+      return res.json({success:true,message:"Appointment Completed"})
+    }else{
+      return res.json({success:false,message:"Mark Faild"})
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ 
+      success: false, 
+      message: "Internal server error",
+      error: error.message 
+    });
+  }
+}
+
+///API for Appointment Cancel
+
+const appointmentCancel=async(req,res)=>{
+
+  try {
+
+    const {docId,appointmentId}=req.body
+    const appointmentData=await appointmentModel.findById(appointmentId)
+    if(appointmentData && appointmentData.docId===docId){
+      await appointmentModel.findByIdAndUpdate(appointmentId,{cancelled:true})
+      return res.json({success:true,message:"Appointment Cancelled"})
+    }else{
+      return res.json({success:false,message:"Cancellation Failed"})
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ 
+      success: false, 
+      message: "Internal server error",
+      error: error.message 
+    });
+  }
+}
+
 export {
-  loginDoctor,
-  changeAvailability,appointmentsDoctor
+  loginDoctor,doctorList,
+  changeAvailability,appointmentsDoctor,appointmentCancel,appointmentComplete
  };  

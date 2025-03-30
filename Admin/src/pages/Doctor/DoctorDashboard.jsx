@@ -1,137 +1,160 @@
-import React from 'react'
-import { FiCalendar, FiUser, FiDollarSign, FiClock } from 'react-icons/fi'
+import React, { useState, useEffect } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const DoctorDashboard = () => {
-  // Sample data - replace with your actual data
-  const stats = [
-    { title: "Total Appointments", value: 124, icon: <FiCalendar className="text-xl" />, trend: "↑ 12%", color: "text-blue-500" },
-    { title: "New Patients", value: 42, icon: <FiUser className="text-xl" />, trend: "↑ 5%", color: "text-green-500" },
-    { title: "Earnings", value: "₹85,420", icon: <FiDollarSign className="text-xl" />, trend: "↑ 18%", color: "text-amber-500" },
-    { title: "Avg. Wait Time", value: "15 min", icon: <FiClock className="text-xl" />, trend: "↓ 2%", color: "text-purple-500" }
-  ]
+  const [dashdata, setDashData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const recentAppointments = [
-    { id: 1, patient: "Rahul Sharma", time: "10:00 AM", date: "12 May 2023", status: "completed", payment: "Online" },
-    { id: 2, patient: "Priya Patel", time: "11:30 AM", date: "12 May 2023", status: "upcoming", payment: "Cash" },
-    { id: 3, patient: "Amit Singh", time: "2:00 PM", date: "12 May 2023", status: "upcoming", payment: "Online" }
-  ]
+  // Mock data generator
+  const generateMockData = () => {
+    const mockAppointments = [
+      {
+        _id: "1",
+        patientName: "John Doe",
+        date: new Date(),
+        isCompleted: true,
+        amount: 1500
+      },
+      {
+        _id: "2",
+        patientName: "Jane Smith",
+        date: new Date(Date.now() - 86400000),
+        isCompleted: false,
+        amount: 1200
+      },
+      {
+        _id: "3",
+        patientName: "Robert Johnson",
+        date: new Date(Date.now() - 172800000),
+        isCompleted: true,
+        amount: 1800
+      },
+      {
+        _id: "4",
+        patientName: "Emily Davis",
+        date: new Date(Date.now() - 259200000),
+        isCompleted: true,
+        amount: 2000
+      },
+      {
+        _id: "5",
+        patientName: "Michael Wilson",
+        date: new Date(Date.now() - 345600000),
+        isCompleted: false,
+        amount: 1600
+      }
+    ];
+
+    const completedAppointments = mockAppointments.filter(app => app.isCompleted);
+    const totalEarnings = completedAppointments.reduce((sum, app) => sum + app.amount, 0);
+    const uniquePatients = [...new Set(mockAppointments.map(app => app.patientName))];
+    
+    return {
+      earnings: totalEarnings,
+      appointments: mockAppointments.length,
+      patients: uniquePatients,
+      latestAppointments: [...mockAppointments].reverse().slice(0, 5),
+      appointmentsByDay: [1, 4, 2, 5, 3, 2, 0] // Sample data for each day of week
+    };
+  };
+
+  useEffect(() => {
+    // Simulate API call with timeout
+    const timer = setTimeout(() => {
+      setDashData(generateMockData());
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-8">Loading dashboard data...</div>;
+  }
+
+  if (!dashdata) {
+    return <div className="text-center py-8">No data available</div>;
+  }
+
+  // Prepare data for the weekly appointments chart
+  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const weeklyData = dashdata.appointmentsByDay.map((count, index) => ({
+    day: weekDays[index],
+    appointments: count
+  }));
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 md:p-6">
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Doctor Dashboard</h1>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-6">Doctor Dashboard</h1>
       
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {stats.map((stat, index) => (
-          <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-gray-500 text-sm font-medium">{stat.title}</p>
-                <p className="text-2xl font-bold mt-2">{stat.value}</p>
-              </div>
-              <div className={`p-3 rounded-lg ${stat.color.replace('text', 'bg')} bg-opacity-10`}>
-                {stat.icon}
-              </div>
-            </div>
-            <p className={`text-xs mt-3 ${stat.color}`}>{stat.trend} from last week</p>
-          </div>
-        ))}
+      {/* Summary Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="bg-white p-4 rounded-lg shadow">
+          <h3 className="text-gray-500">Total Earnings</h3>
+          <p className="text-2xl font-bold">₹{dashdata.earnings.toLocaleString()}</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow">
+          <h3 className="text-gray-500">Total Appointments</h3>
+          <p className="text-2xl font-bold">{dashdata.appointments}</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow">
+          <h3 className="text-gray-500">Total Patients</h3>
+          <p className="text-2xl font-bold">{dashdata.patients.length}</p>
+        </div>
+      </div>
+
+      {/* Weekly Appointments Chart */}
+      <div className="bg-white p-4 rounded-lg shadow mb-6">
+        <h2 className="text-xl font-semibold mb-4">Weekly Appointments</h2>
+        <div className="h-64">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={weeklyData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="day" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="appointments" fill="#8884d8" name="Appointments" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
       {/* Recent Appointments */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-8">
-        <div className="px-6 py-4 border-b flex justify-between items-center">
-          <h2 className="text-lg font-semibold text-gray-800">Recent Appointments</h2>
-          <button className="text-sm text-[#FF7F50] font-medium">View All</button>
-        </div>
-        
-        <div className="divide-y">
-          {recentAppointments.map((appointment) => (
-            <div key={appointment.id} className="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-4 hover:bg-gray-50 transition-colors">
-              <div className="md:col-span-4 flex items-center">
-                <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mr-3">
-                  <FiUser className="text-gray-500" />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-800">{appointment.patient}</p>
-                  <p className="text-xs text-gray-500">ID: {appointment.id}</p>
-                </div>
-              </div>
-              
-              <div className="md:col-span-3">
-                <p className="text-gray-600">{appointment.date}</p>
-                <p className="text-sm text-gray-500">{appointment.time}</p>
-              </div>
-              
-              <div className="md:col-span-2">
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  appointment.status === 'completed' ? 'bg-green-100 text-green-800' : 
-                  'bg-blue-100 text-blue-800'
-                }`}>
-                  {appointment.status}
-                </span>
-              </div>
-              
-              <div className="md:col-span-2">
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  appointment.payment === 'Online' ? 'bg-purple-100 text-purple-800' : 
-                  'bg-amber-100 text-amber-800'
-                }`}>
-                  {appointment.payment}
-                </span>
-              </div>
-              
-              <div className="md:col-span-1 flex justify-end">
-                <button className="text-gray-400 hover:text-gray-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Upcoming Schedule */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="px-6 py-4 border-b">
-          <h2 className="text-lg font-semibold text-gray-800">Today's Schedule</h2>
-        </div>
-        
-        <div className="p-6">
-          <div className="relative">
-            {/* Timeline */}
-            <div className="border-l-2 border-gray-200 absolute h-full left-4 top-0"></div>
-            
-            {[9, 10, 11, 12, 1, 2, 3, 4, 5].map((hour) => (
-              <div key={hour} className="mb-8 relative pl-10">
-                <div className="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1"></div>
-                <p className="text-sm font-medium text-gray-500">{hour}:00 {hour < 12 ? 'AM' : 'PM'}</p>
-                
-                {/* Sample appointment - replace with real data */}
-                {hour === 10 && (
-                  <div className="mt-2 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                    <p className="font-medium text-blue-800">Rahul Sharma</p>
-                    <p className="text-sm text-blue-600">General Checkup</p>
-                    <p className="text-xs text-blue-500 mt-1">10:00 - 10:30 AM</p>
-                  </div>
-                )}
-                
-                {hour === 2 && (
-                  <div className="mt-2 p-4 bg-purple-50 rounded-lg border border-purple-100">
-                    <p className="font-medium text-purple-800">Priya Patel</p>
-                    <p className="text-sm text-purple-600">Follow-up Visit</p>
-                    <p className="text-xs text-purple-500 mt-1">2:00 - 2:45 PM</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+      <div className="bg-white p-4 rounded-lg shadow">
+        <h2 className="text-xl font-semibold mb-4">Recent Appointments</h2>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {dashdata.latestAppointments.map((appointment) => (
+                <tr key={appointment._id}>
+                  <td className="px-6 py-4 whitespace-nowrap">{appointment.patientName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {new Date(appointment.date).toLocaleDateString()}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                      ${appointment.isCompleted ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                      {appointment.isCompleted ? 'Completed' : 'Upcoming'}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">₹{appointment.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DoctorDashboard
+export default DoctorDashboard;

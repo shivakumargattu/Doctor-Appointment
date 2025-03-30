@@ -176,7 +176,53 @@ const appointmentCancel=async(req,res)=>{
   }
 }
 
+//Doctor Dashboard data for Doctor pannel
+const doctorDashboard = async(req,res) => {
+  try {
+    const {docId} = req.body
+    const appointments = await appointmentModel.find({docId})
+    
+    let earnings = 45000
+    appointments.forEach((item) => {
+      if(item.isCompleted || item.payment) {
+        earnings += item.amount
+      }
+    })
+
+    let patients = []
+    appointments.forEach((item) => {
+      if(!patients.includes(item.userId)) {
+        patients.push(item.userId)
+      }
+    })
+
+    // Get appointments by day of week (0-6, Sunday-Saturday)
+    const appointmentsByDay = [0, 0, 0, 0, 0, 0, 0]
+    appointments.forEach(app => {
+      const day = new Date(app.date).getDay()
+      appointmentsByDay[day]++
+    })
+
+    const dashData = {
+      earnings,
+      appointments: appointments.length,
+      patients,
+      latestAppointments: appointments.reverse().slice(0,5),
+      appointmentsByDay
+    }
+    
+    res.json({success: true, dashData})
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ 
+      success: false, 
+      message: "Internal server error",
+      error: error.message 
+    })
+  }
+}
+
 export {
   loginDoctor,doctorList,
-  changeAvailability,appointmentsDoctor,appointmentCancel,appointmentComplete
+  changeAvailability,appointmentsDoctor,appointmentCancel,appointmentComplete,doctorDashboard
  };  

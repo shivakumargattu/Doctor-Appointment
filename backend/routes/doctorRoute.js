@@ -3,7 +3,7 @@ import {
   loginDoctor,
   changeAvailability,
   appointmentsDoctor,doctorList,
-  appointmentCancel,appointmentComplete,doctorDashboard
+  appointmentCancel,appointmentComplete,doctorDashboard,updateDoctorProfile,doctorProfile
 } from "../controllers/doctorController.js";
 import authDoctor from "../middlewares/authDoctor.js";
 
@@ -15,7 +15,9 @@ doctorRouter.get("/appointments",authDoctor,appointmentsDoctor);
 doctorRouter.post("/change-availability", changeAvailability);
 doctorRouter.post("/complete-appointment",authDoctor,appointmentComplete);
 doctorRouter.post("/cancel-appointment",authDoctor,appointmentCancel);
-doctorRouter.post("/dashboard",authDoctor,doctorDashboard);
+doctorRouter.get("/dashboard",authDoctor,doctorDashboard);
+doctorRouter.get("/doctor-profile",doctorProfile)
+doctorRouter.post("/updateDoctorProfile",updateDoctorProfile)
 
 
 export default doctorRouter;

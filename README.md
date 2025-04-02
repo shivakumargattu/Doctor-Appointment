@@ -38,6 +38,7 @@ A full-stack MERN application for managing doctor appointments with separate int
 - Material-UI (UI Components)
 - Axios (HTTP Client)
 - React Router (Navigation)
+- Tailwind cs
 
 **Backend:**
 - Node.js

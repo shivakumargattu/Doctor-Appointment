@@ -33,6 +33,3 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 PORT=5000
 NODE_ENV=development
-
-# In client/.env
-REACT_APP_API_URL=http://localhost:4000/api

@@ -63,7 +63,7 @@ A full-stack MERN application for managing doctor appointments with separate int
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/doctor-appointment-system.git
+git clone https://github.com/shivakumargattu/Doctor-Appointment/
 cd doctor-appointment-system
 
 # Backend
@@ -71,4 +71,5 @@ cd server && npm install
 
 # Frontend
 cd ../client && npm install
+
 

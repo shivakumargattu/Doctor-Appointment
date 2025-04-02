@@ -34,7 +34,7 @@ A full-stack MERN application for managing doctor appointments with separate int
 
 **Frontend:**
 - React.js
-- Redux (State Management)
+- React hooks (State Management)
 - Material-UI (UI Components)
 - Axios (HTTP Client)
 - React Router (Navigation)

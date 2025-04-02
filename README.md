@@ -1,35 +1,73 @@
 # MERN Stack Doctor Appointment
+# Doctor Appointment System
 
-<img src="https://miro.medium.com/max/1200/1*WYQ8z7BxLQ3obIyYh4w5BQ.png"/>
+![Healthcare App](https://img.icons8.com/color/96/000000/medical-doctor.png)
 
-A full-stack Doctor Appointment using MongoDB, Express, React, and Node.js with modern development practices.
+A full-stack MERN application for managing doctor appointments with separate interfaces for patients and administrators.
+
+## Live Demo
+
+**Patient Portal:**  
+👉 [https://doctor-appointment-9uf8.vercel.app/](https://doctor-appointment-9uf8.vercel.app/)
+
+**Admin Dashboard:**  
+🔒 [https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/](https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/)  
+*(Admin credentials required)*
 
 ## Features
 
-- **Full authentication system** (Admin/doctor/Register/Login/Logout)
-- **JWT-based authorization**
-- **React hooks** for state management
-- **Express REST API** with MVC architecture
-- **Mongoose ODM** for MongoDB
-- **Environment variables** configuration
-- **Custom error handling** middleware
-- **Responsive design** ready
-- **API documentation** with Swagger
+### Patient Features
+- Browse available doctors
+- Book/Cancel appointments
+- View appointment history
+- User profile management
+- Responsive mobile-friendly interface
 
-## Prerequisites
+### Admin Features
+- Manage all appointments
+- Doctor management (CRUD)
+- Patient management
+- Analytics dashboard
+- Special admin controls
 
-- Node.js >= 14.x
-- npm >= 6.x or yarn
-- MongoDB Atlas account or local MongoDB instance
+## Technology Stack
 
-# Install server dependencies
+**Frontend:**
+- React.js
+- Redux (State Management)
+- Material-UI (UI Components)
+- Axios (HTTP Client)
+- React Router (Navigation)
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB (Database)
+- Mongoose (ODM)
+- JWT (Authentication)
+
+**DevOps:**
+- Vercel (Frontend Hosting)
+- Render/Heroku (Backend Hosting)
+- GitHub (Version Control)
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB Atlas account or local MongoDB
+- Git
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/doctor-appointment-system.git
+cd doctor-appointment-system
+
+# Backend
 cd server && npm install
 
-# Install client dependencies
+# Frontend
 cd ../client && npm install
 
-# In server/.env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-PORT=5000
-NODE_ENV=development

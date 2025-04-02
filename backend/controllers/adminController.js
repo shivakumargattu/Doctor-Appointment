@@ -33,8 +33,8 @@ const addDoctor=async (req, res)=>{
         }
 
         /// hasing password 
-        const slat=await bcript.genSalt(10)
-        const hashedPassword=await bcript.hash(password,slat)
+        const slat=await bcrypt.genSalt(10)
+        const hashedPassword=await bcrypt.hash(password,slat)
 
         /// upload image into cloudinary 
         

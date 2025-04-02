@@ -1,6 +1,6 @@
 # MERN Stack Doctor Appointment
 
-https://miro.medium.com/max/1200/1*WYQ8z7BxLQ3obIyYh4w5BQ.png
+<img src="https://miro.medium.com/max/1200/1*WYQ8z7BxLQ3obIyYh4w5BQ.png"/>
 
 A full-stack JavaScript boilerplate using MongoDB, Express, React, and Node.js with modern development practices.
 

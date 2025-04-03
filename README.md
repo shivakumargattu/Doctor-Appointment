@@ -71,5 +71,7 @@ cd server && npm install
 
 # Frontend
 cd ../client && npm install
+![Screenshot 2025-04-03 125644](https://github.com/user-attachments/assets/080f6bd4-729d-46a7-aac7-7dbc5f8ef812)
+
 
 

@@ -11,7 +11,7 @@ A full-stack MERN application for managing doctor appointments with separate int
 👉 [https://doctor-appointment-9uf8.vercel.app/](https://doctor-appointment-9uf8.vercel.app/)
 
 <img src="https://github.com/user-attachments/assets/080f6bd4-729d-46a7-aac7-7dbc5f8ef812"/>
-![Screenshot 2025-04-03 130132](https://github.com/user-attachments/assets/1d5854cb-f38f-4e70-b392-95311a6d1fb3)
+<img src="https://github.com/user-attachments/assets/1d5854cb-f38f-4e70-b392-95311a6d1fb3"/>
 
 
 **Admin Dashboard:**  

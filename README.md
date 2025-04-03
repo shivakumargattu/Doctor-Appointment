@@ -10,6 +10,7 @@ A full-stack MERN application for managing doctor appointments with separate int
 **Patient Portal:**  
 👉 [https://doctor-appointment-9uf8.vercel.app/](https://doctor-appointment-9uf8.vercel.app/)
 
+<img src="https://github.com/user-attachments/assets/080f6bd4-729d-46a7-aac7-7dbc5f8ef812"/>
 **Admin Dashboard:**  
 🔒 [https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/](https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/)  
 *(Admin credentials required)*
@@ -74,7 +75,7 @@ cd ../client && npm install
 
 
 
-<img src="https://github.com/user-attachments/assets/080f6bd4-729d-46a7-aac7-7dbc5f8ef812"/>
+
 
 
 

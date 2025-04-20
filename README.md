@@ -18,6 +18,7 @@ A full-stack MERN application for managing doctor appointments with separate int
 🔒 [https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/](https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/)  
 *(Admin credentials required)*
 <img src="https://github.com/user-attachments/assets/83468738-3598-4d25-bc39-a2dd73a5a230" />
+<img src="https://github.com/user-attachments/assets/8cc8c405-8287-493f-94c5-e69ce9db6472" />
 ## Features
 
 ### Patient Features

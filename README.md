@@ -18,7 +18,10 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing do
 
 ### 🔒 Admin Dashboard:
 👉 [https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/](https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/)  
-*(Admin credentials required)*
+*(Admin credentials required)* 
+📧 Email: admin@shiva.com  
+🔑 Password: Shiv@409
+
 
 ![Admin 1](https://github.com/user-attachments/assets/83468738-3598-4d25-bc39-a2dd73a5a230)
 ![Admin 2](https://github.com/user-attachments/assets/8cc8c405-8287-493f-94c5-e69ce9db6472)

@@ -1,86 +1,106 @@
-# MERN Stack Doctor Appointment
-# Doctor Appointment System
+  # 🩺 MERN Stack Doctor Appointment System
 
 ![Healthcare App](https://img.icons8.com/color/96/000000/medical-doctor.png)
 
-A full-stack MERN application for managing doctor appointments with separate interfaces for patients and administrators.
+A full-stack MERN (MongoDB, Express, React, Node.js) application for managing doctor appointments with **patient and admin dashboards**. It includes authentication, doctor listings, appointment management, and responsive UI.
 
-## Live Demo
+---
 
-**Patient Portal:**  
+## 🚀 Live Demo
+
+### 👨‍⚕️ Patient Portal:
 👉 [https://doctor-appointment-9uf8.vercel.app/](https://doctor-appointment-9uf8.vercel.app/)
 
-<img src="https://github.com/user-attachments/assets/080f6bd4-729d-46a7-aac7-7dbc5f8ef812"/>
-<img src="https://github.com/user-attachments/assets/1d5854cb-f38f-4e70-b392-95311a6d1fb3"/>
+![Patient 1](https://github.com/user-attachments/assets/080f6bd4-729d-46a7-aac7-7dbc5f8ef812)
+![Patient 2](https://github.com/user-attachments/assets/1d5854cb-f38f-4e70-b392-95311a6d1fb3)
 
+---
 
-**Admin Dashboard:**  
-🔒 [https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/](https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/)  
+### 🔒 Admin Dashboard:
+👉 [https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/](https://doctor-appointment-digy-lclx91j9s-shivakumargattus-projects.vercel.app/)  
 *(Admin credentials required)*
-<img src="https://github.com/user-attachments/assets/83468738-3598-4d25-bc39-a2dd73a5a230" />
-<img src="https://github.com/user-attachments/assets/8cc8c405-8287-493f-94c5-e69ce9db6472" />
-## Features
 
-### Patient Features
+![Admin 1](https://github.com/user-attachments/assets/83468738-3598-4d25-bc39-a2dd73a5a230)
+![Admin 2](https://github.com/user-attachments/assets/8cc8c405-8287-493f-94c5-e69ce9db6472)
+
+---
+
+## ✨ Features
+
+### 🧑‍⚕️ Patient Features
 - Browse available doctors
-- Book/Cancel appointments
+- Book or cancel appointments
 - View appointment history
-- User profile management
-- Responsive mobile-friendly interface
+- Manage user profile
+- Fully responsive mobile interface
 
-### Admin Features
-- Manage all appointments
-- Doctor management (CRUD)
-- Patient management
-- Analytics dashboard
-- Special admin controls
+### 🛠️ Admin Features
+- View & manage all appointments
+- CRUD operations for doctors
+- View patient details
+- Dashboard analytics (optional)
+- Admin-only access
 
-## Technology Stack
+---
 
-**Frontend:**
+## ⚙️ Tech Stack
+
+### Frontend:
 - React.js
-- React hooks (State Management)
-- Material-UI (UI Components)
-- Axios (HTTP Client)
-- React Router (Navigation)
-- Tailwind cs
+- React Hooks & Context API
+- Tailwind CSS
+- Axios
+- React Router
+- Toastify
 
-**Backend:**
+### Backend:
 - Node.js
 - Express.js
-- MongoDB (Database)
-- Mongoose (ODM)
+- MongoDB (Mongoose)
 - JWT (Authentication)
 
-**DevOps:**
-- Vercel (Frontend Hosting)
-- Render/Heroku (Backend Hosting)
-- GitHub (Version Control)
+### DevOps:
+- Vercel – Frontend Hosting
+- Render – Backend Hosting
+- GitHub – Version Control
 
-## Getting Started
+---
 
-### Prerequisites
-- Node.js (v16 or higher)
-- MongoDB Atlas account or local MongoDB
+## 🔐 API Endpoints
+
+> Backend URL: `https://doctor-appointment-0xl4.onrender.com`
+
+| Method | Endpoint                             | Description                       |
+|--------|--------------------------------------|-----------------------------------|
+| POST   | `/api/user/register`                 | Register a new user               |
+| POST   | `/api/user/login`                    | Login with email/password         |
+| GET    | `/api/user/get-profile`              | Get logged-in user profile        |
+| GET    | `/api/doctor/list`                   | Fetch list of doctors             |
+| POST   | `/api/appointment/book`              | Book a new appointment *(future)* |
+| GET    | `/api/appointment/my-appointments`   | View user’s appointment history   |
+
+> 🔐 Most routes require: `Authorization: token` in headers.
+
+---
+
+## 🧪 Getting Started Locally
+
+### 🔧 Prerequisites
+- Node.js v16+
+- MongoDB Atlas or local instance
 - Git
 
-### Installation
+### 🛠 Installation Steps
 
-1. Clone the repository:
 ```bash
-git clone https://github.com/shivakumargattu/Doctor-Appointment/
-cd doctor-appointment-system
+# 1. Clone the repository
+git clone https://github.com/shivakumargattu/Doctor-Appointment
+cd Doctor-Appointment
 
-# Backend
-cd server && npm install
+# 2. Install backend dependencies
+cd server
+npm install
 
-# Frontend
-cd ../client && npm install
-
-
-
-
-
-
-
-
+# 3. Install frontend dependencies
+cd ../client
+npm install
